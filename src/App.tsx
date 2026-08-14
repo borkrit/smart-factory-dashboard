@@ -1,10 +1,13 @@
-import { useState } from "react";
+
 import Header from "./components/Header";
 import MachineCard from "./components/MachineCard";
-import { MOCK_MACHINES } from "./mock/machine";
+
+import AddMachine from "./components/AddMachine";
+
+import {useMachinesStore} from './store/useMachinesStore'
 
 export default function App() {
-  const [machines] = useState(MOCK_MACHINES);
+  const machines = useMachinesStore(state=>state.machines);
 
   
   const totalMachines = machines.length;
@@ -20,6 +23,7 @@ export default function App() {
       <div className="max-w-7xl mx-auto">
        
         <Header machines={machines} />
+        <AddMachine />
 
       
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
