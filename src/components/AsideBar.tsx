@@ -1,6 +1,7 @@
+import type { JSX } from "react";
 import { useTranslation } from "react-i18next"
 
-const AsideBar = ()=>{
+const AsideBar = ():JSX.Element=>{
     
     const {t, i18n} = useTranslation(undefined,{ keyPrefix: 'setting' })
     const currentLanguage = i18n.language
@@ -18,7 +19,7 @@ const AsideBar = ()=>{
             <p>{t('current_language')} {currentLanguage}</p>
             <select onChange={handleToggleLang} value={currentLanguage}>
                 {
-                listLanguages && listLanguages.map((language,index) =>{
+                listLanguages && listLanguages.map((language) =>{
                     return (
                         <option  key={language} value={language}>
                             {language}

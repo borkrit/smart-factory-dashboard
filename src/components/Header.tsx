@@ -1,7 +1,8 @@
 import { useTranslation } from "react-i18next"
 import type { Machine } from "../mock/machine"
+import type { JSX } from "react"
 
-const Header = ({machines}:{machines:Machine[]})=>{
+const Header = ({machines}:{machines:Machine[]}):JSX.Element=>{
   const {t} = useTranslation()
 
 

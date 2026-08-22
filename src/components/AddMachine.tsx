@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { useMachinesStore } from "../store/useMachinesStore"
 import { useTranslation } from "react-i18next"
+import type { JSX } from "react"
 
-const AddMachine = ()=>{
+const AddMachine = ():JSX.Element=>{
 
     const {t} = useTranslation()
 
