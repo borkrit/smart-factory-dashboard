@@ -1,30 +1,33 @@
 import type { JSX } from "react";
 import type { Machine } from "../mock/machine";
+import { useTranslation } from "react-i18next";
 
 const STATUS_CONFIG = {
   running: {
-    label: "В РАБОТЕ",
+    label: "machine_status.running",
     badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
     dot: "bg-emerald-400",
   },
   warning: {
-    label: "ОБСЛУЖИВАНИЕ",
+    label: "machine_status.warning",
     badge: "bg-amber-500/10 text-amber-400 border-amber-500/20",
     dot: "bg-amber-400",
   },
   alarm: {
-    label: "АВАРИЯ",
+    label: "machine_status.alarm",
     badge: "bg-rose-500/10 text-rose-400 border-rose-500/30 animate-pulse",
     dot: "bg-rose-500",
   },
   offline: {
-    label: "ВЫКЛЮЧЕН",
+    label: "machine_status.offline",
     badge: "bg-slate-500/10 text-slate-400 border-slate-500/20",
     dot: "bg-slate-500",
   },
 };
 
 const MachineCard = ({ machine }: { machine: Machine }): JSX.Element => {
+  const {t} = useTranslation()
+  
   const status = STATUS_CONFIG[machine.status];
   const isHighTemp = machine.temperature > 80;
 
@@ -46,7 +49,7 @@ const MachineCard = ({ machine }: { machine: Machine }): JSX.Element => {
           className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium font-mono border ${status.badge}`}
         >
           <span className={`w-1.5 h-1.5 rounded-full ${status.dot}`} />
-          {status.label}
+          {t(status.label)}
         </span>
       </div>
 
@@ -55,7 +58,7 @@ const MachineCard = ({ machine }: { machine: Machine }): JSX.Element => {
         
         <div className="bg-slate-950/50 p-2 rounded-lg border border-slate-800/50">
           <span className="text-[10px] uppercase tracking-wider text-slate-500 block font-medium">
-            Темп.
+            {t('machine_card_info.temperature')}
           </span>
           <span
             className={`font-mono text-sm font-bold ${
@@ -69,7 +72,7 @@ const MachineCard = ({ machine }: { machine: Machine }): JSX.Element => {
        
         <div className="bg-slate-950/50 p-2 rounded-lg border border-slate-800/50">
           <span className="text-[10px] uppercase tracking-wider text-slate-500 block font-medium">
-            Скорость
+            {t('machine_card_info.speed')}
           </span>
           <span className="font-mono text-sm font-bold text-slate-200">
             {machine.speed} <span className="text-[10px] font-normal text-slate-400">RPM</span>
@@ -79,7 +82,7 @@ const MachineCard = ({ machine }: { machine: Machine }): JSX.Element => {
        
         <div className="bg-slate-950/50 p-2 rounded-lg border border-slate-800/50">
           <span className="text-[10px] uppercase tracking-wider text-slate-500 block font-medium">
-            OEE
+            {t('machine_card_info.efficiency')}
           </span>
           <span className="font-mono text-sm font-bold text-slate-200">
             {machine.efficiency}%

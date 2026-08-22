@@ -1,0 +1,42 @@
+{
+
+    "common":{
+        "all_machines":"Всего станков",
+        "in_progress":"В работе",
+        "in_accident":"В аварии",
+        "avarage_efficiency":"Средний OEE",
+        "map_industrial":"Карта цеха",
+        "count_module":"{{count}} модулей получено"
+
+    },
+
+    "new_machine":{
+        "add_new_machine":"Добавить новую машину"
+    },
+
+    "system_status":{
+        "alarm_label":"ТРЕВОГА: ТРЕБУЕТСЯ ВМЕШАТЕЛЬСТВО",
+        "warning_label":"ВНИМАНИЕ: ЕСТЬ ВЫКЛЮЧЕННЫЕ СТАНКИ",
+        "common_label":"СИСТЕМА В НОРМЕ"
+    },
+
+    "machine_card_info":{
+        "temperature":"Темп.",
+        "speed":"Скорость",
+        "efficiency":"OEE"
+    },
+
+    "machine_status":{
+        "running":"В РАБОТЕ",
+        "warning":"ОБСЛУЖИВАНИЕ",
+        "alarm":"АВАРИЯ",
+        "offline":"ВЫКЛЮЧЕН"
+    },
+
+    "setting":{
+        "title": "Настройки",
+        "current_language":"Текущий язык"
+        
+    }
+
+}

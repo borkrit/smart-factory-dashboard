@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next"
 import type { Machine } from "../mock/machine"
 
 const Header = ({machines}:{machines:Machine[]})=>{
+  const {t} = useTranslation()
+
 
     const hasAlarm = machines.some((item)=>{
       return  item.status === 'alarm' || item.temperature > 80
@@ -13,20 +16,20 @@ const Header = ({machines}:{machines:Machine[]})=>{
     const getSystemStatus = () => {
     if (hasAlarm) {
       return {
-        label: "ТРЕВОГА: ТРЕБУЕТСЯ ВМЕШАТЕЛЬСТВО",
+        label: 'system_status.alarm_label',
         badge: "bg-rose-500/10 text-rose-400 border-rose-500/30",
         dot: "bg-rose-500 animate-ping",
       };
     }
     if (hasWarning) {
       return {
-        label: "ВНИМАНИЕ: ЕСТЬ ВЫКЛЮЧЕННЫЕ СТАНКИ",
+        label: "system_status.warning_label",
         badge: "bg-amber-500/10 text-amber-400 border-amber-500/30",
         dot: "bg-amber-400",
       };
     }
     return {
-      label: "СИСТЕМА В НОРМЕ",
+      label: 'system_status.common_label',
       badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
       dot: "bg-emerald-400",
     };
@@ -47,7 +50,7 @@ const Header = ({machines}:{machines:Machine[]})=>{
         </p>
       </div>
 
-      {/* Вычисленный системный индикатор */}
+      
       <div
         className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono font-medium border ${status.badge}`}
       >
@@ -55,7 +58,7 @@ const Header = ({machines}:{machines:Machine[]})=>{
           <span className={`absolute inline-flex h-full w-full rounded-full opacity-75 ${status.dot}`} />
           <span className={`relative inline-flex rounded-full h-2 w-2 ${status.dot.replace('animate-ping', '')}`} />
         </span>
-        {status.label}
+        {t(status.label)}
       </div>
     </header>)
 }

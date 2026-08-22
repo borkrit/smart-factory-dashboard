@@ -1,0 +1,32 @@
+{
+  "common": {
+    "all_machines": "Усього верстатів",
+    "in_progress": "У роботі",
+    "in_accident": "У стані аварії",
+    "avarage_efficiency": "Середнє OEE",
+    "map_industrial": "Карта цеху",
+    "count_module": "Отримано {{count}} модулів"
+  },
+  "new_machine": {
+    "add_new_machine": "Додати новий верстат"
+  },
+  "system_status": {
+    "alarm_label": "ТРИВОГА: ПОТРІБНЕ ВТРУЧАННЯ",
+    "warning_label": "УВАГА: Є ВИМКНЕНІ ВЕРСТАТИ",
+    "common_label": "СИСТЕМА В НОРМІ"
+  },
+  "machine_card_info": {
+    "temperature": "Темп.",
+    "speed": "Швидкість",
+    "efficiency": "OEE"
+  },
+  "machine_status": {
+    "running": "У РОБОТІ",
+    "warning": "ОБСЛУГОВУВАННЯ",
+    "alarm": "АВАРІЯ",
+    "offline": "ВИМКНЕНИЙ"
+  },
+  "setting": {
+    "title": "Налаштування"
+  }
+}

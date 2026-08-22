@@ -1,0 +1,32 @@
+{
+  "common": {
+    "all_machines": "Total machines",
+    "in_progress": "In progress",
+    "in_accident": "In alarm state",
+    "avarage_efficiency": "Average OEE",
+    "map_industrial": "Shop floor map",
+    "count_module": "{{count}} modules received"
+  },
+  "new_machine": {
+    "add_new_machine": "Add new machine"
+  },
+  "system_status": {
+    "alarm_label": "ALARM: INTERVENTION REQUIRED",
+    "warning_label": "WARNING: SOME MACHINES ARE OFF",
+    "common_label": "SYSTEM NORMAL"
+  },
+  "machine_card_info": {
+    "temperature": "Temp.",
+    "speed": "Speed",
+    "efficiency": "OEE"
+  },
+  "machine_status": {
+    "running": "RUNNING",
+    "warning": "MAINTENANCE",
+    "alarm": "ALARM",
+    "offline": "OFFLINE"
+  },
+  "setting": {
+    "title": "Settings"
+  }
+}

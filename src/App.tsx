@@ -5,8 +5,11 @@ import MachineCard from "./components/MachineCard";
 import AddMachine from "./components/AddMachine";
 
 import {useMachinesStore} from './store/useMachinesStore'
+import { useTranslation } from "react-i18next";
+import AsideBar from "./components/AsideBar";
 
 export default function App() {
+  const {t} = useTranslation()
   const machines = useMachinesStore(state=>state.machines);
 
   
@@ -19,7 +22,7 @@ export default function App() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 sm:p-8 font-sans">
+    <div className="min-h-screen relative bg-slate-950 text-slate-100 p-4 sm:p-8 font-sans">
       <div className="max-w-7xl mx-auto">
        
         <Header machines={machines} />
@@ -52,8 +55,8 @@ export default function App() {
 
         <main>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-slate-200">Карта цеха</h2>
-            <span className="text-xs font-mono text-slate-500">6 модулей получено</span>
+            <h2 className="text-lg font-semibold text-slate-200">{t('common.map_industrial')}</h2>
+            <span className="text-xs font-mono text-slate-500">{t('common.count_module',{count:6})}</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -63,6 +66,7 @@ export default function App() {
           </div>
         </main>
       </div>
+      <AsideBar/>
     </div>
   );
 }

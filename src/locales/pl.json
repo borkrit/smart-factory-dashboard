@@ -1,0 +1,32 @@
+{
+  "common": {
+    "all_machines": "Wszystkie maszyny",
+    "in_progress": "W trakcie pracy",
+    "in_accident": "W stanie awarii",
+    "avarage_efficiency": "Średnie OEE",
+    "map_industrial": "Mapa hali produkcyjnej",
+    "count_module": "Otrzymano {{count}} modułów"
+  },
+  "new_machine": {
+    "add_new_machine": "Dodaj nową maszynę"
+  },
+  "system_status": {
+    "alarm_label": "ALARM: WYMAGANA INTERWENCJA",
+    "warning_label": "UWAGA: SĄ WYŁĄCZONE MASZYNY",
+    "common_label": "SYSTEM DZIAŁA PRAWIDŁOWO"
+  },
+  "machine_card_info": {
+    "temperature": "Temp.",
+    "speed": "Prędkość",
+    "efficiency": "OEE"
+  },
+  "machine_status": {
+    "running": "W TRAKCIE PRACY",
+    "warning": "KONSERWACJA",
+    "alarm": "AWARIA",
+    "offline": "WYŁĄCZONA"
+  },
+  "setting": {
+    "title": "Ustawienia"
+  }
+}
