@@ -1,7 +1,8 @@
 import type { JSX } from "react";
 import { useTranslation } from "react-i18next"
+import AddMachine from "./AddMachine";
 
-const AsideBar = ():JSX.Element=>{
+const AsideBar = ({open}:{open:boolean}):JSX.Element=>{
     
     const {t, i18n} = useTranslation(undefined,{ keyPrefix: 'setting' })
     const currentLanguage = i18n.language
@@ -14,8 +15,11 @@ const AsideBar = ():JSX.Element=>{
 
 
     return(
-        <div className="absolute h-full w-[200px]" >
+        <div className={`absolute h-full bg-slate-900 w-1/4 p-2.5 top-0 right-0 ${open ? '':'hidden'}`} >
             {t('title')}
+
+            <AddMachine/>
+
             <p>{t('current_language')} {currentLanguage}</p>
             <select onChange={handleToggleLang} value={currentLanguage}>
                 {

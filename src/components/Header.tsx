@@ -1,9 +1,15 @@
 import { useTranslation } from "react-i18next"
 import type { Machine } from "../mock/machine"
-import type { JSX } from "react"
+import { useEffect, useRef, useState, type JSX } from "react"
+
+import { IoSettingsOutline } from "react-icons/io5";
+import AsideBar from "./AsideBar";
+
 
 const Header = ({machines}:{machines:Machine[]}):JSX.Element=>{
   const {t} = useTranslation()
+  const [toggleMenu, setToggleMenu] = useState<boolean>(false);
+  const ref = useRef<HTMLDivElement>(null)
 
 
     const hasAlarm = machines.some((item)=>{
@@ -38,6 +44,30 @@ const Header = ({machines}:{machines:Machine[]}):JSX.Element=>{
 
     const status = getSystemStatus()
 
+    const handleToggleMenu = ()=>{
+        setToggleMenu(true)
+    }
+
+    useEffect(()=>{
+
+      const eventClick = (e:MouseEvent)=>{
+        if(ref.current && !ref.current.contains(e.target as Node)){
+            setToggleMenu(false)
+        }
+        
+      }
+      if(toggleMenu){
+      document.addEventListener('click',eventClick)
+
+      }
+
+
+      return ()=>{
+        document.removeEventListener('click',eventClick)
+        
+      }
+
+    },[toggleMenu])
 
 
     return(
@@ -53,14 +83,26 @@ const Header = ({machines}:{machines:Machine[]}):JSX.Element=>{
 
       
       <div
-        className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono font-medium border ${status.badge}`}
+        className={`inline-flex items-center gap-2 px-3 py-1.5 `}
       >
-        <span className="relative flex h-2 w-2">
-          <span className={`absolute inline-flex h-full w-full rounded-full opacity-75 ${status.dot}`} />
-          <span className={`relative inline-flex rounded-full h-2 w-2 ${status.dot.replace('animate-ping', '')}`} />
-        </span>
+        <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono font-medium border ${status.badge}`}>
+          <span className="relative flex h-2 w-2">
+            <span className={`absolute inline-flex h-full w-full rounded-full opacity-75 ${status.dot}`} />
+            <span className={`relative inline-flex rounded-full h-2 w-2 ${status.dot.replace('animate-ping', '')}`} />
+          </span>
         {t(status.label)}
+
+        </div>
+       
+        
+        <div ref={ref}>
+          <IoSettingsOutline size={24} onClick={handleToggleMenu} />
+          <AsideBar open={toggleMenu}  />
+        </div>
+        
+
       </div>
+
     </header>)
 }
 

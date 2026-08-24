@@ -2,8 +2,6 @@
 import Header from "./components/Header";
 import MachineCard from "./components/MachineCard";
 
-import AddMachine from "./components/AddMachine";
-
 import {useMachinesStore} from './store/useMachinesStore'
 import { useTranslation } from "react-i18next";
 import AsideBar from "./components/AsideBar";
@@ -26,7 +24,7 @@ export default function App() {
       <div className="max-w-7xl mx-auto">
        
         <Header machines={machines} />
-        <AddMachine />
+        
 
       
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -66,7 +64,7 @@ export default function App() {
           </div>
         </main>
       </div>
-      <AsideBar/>
+      
     </div>
   );
 }
