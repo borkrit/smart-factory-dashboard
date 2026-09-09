@@ -1,6 +1,5 @@
 
 import { create } from 'zustand'
-import { MOCK_MACHINES } from "../mock/machine";
 import { supabase } from '../utils/supabase';
 
 
