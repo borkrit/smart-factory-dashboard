@@ -1,6 +1,8 @@
 
 import { create } from 'zustand'
 import { MOCK_MACHINES } from "../mock/machine";
+import { supabase } from '../utils/supabase';
+
 
 interface Machine {
     id: string;
@@ -15,11 +17,12 @@ interface Machine {
 interface MachinesState {
     machines: Machine[]
     addMachine: (info: Pick<Machine, 'name' | 'type'>) => void
+    loadFromDB:()=>void
 }
 
 
 export const useMachinesStore = create<MachinesState>((set) => ({
-    machines: MOCK_MACHINES,
+    machines: [],
     
     addMachine: (info) => set((state) => ({
         machines: [
@@ -34,5 +37,23 @@ export const useMachinesStore = create<MachinesState>((set) => ({
                 efficiency: 0,
             }
         ]
-    }))
+    })),
+
+    loadFromDB: async()=>{
+        try{
+           const {data,error} = await supabase.from('machines').select('*')
+
+           if(error){
+            throw new Error ('ooops')
+           }
+           set({machines: data as Machine[]})
+
+        }catch(err){}
+        finally{
+
+        }
+
+
+    }
+
 }));

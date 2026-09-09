@@ -1,15 +1,18 @@
 
+import { useEffect } from "react";
 import Header from "./components/Header";
 import MachineCard from "./components/MachineCard";
 
 import {useMachinesStore} from './store/useMachinesStore'
 import { useTranslation } from "react-i18next";
-import AsideBar from "./components/AsideBar";
+
 
 export default function App() {
   const {t} = useTranslation()
-  const machines = useMachinesStore(state=>state.machines);
 
+  const fetchMachines = useMachinesStore(state=>state.loadFromDB)
+
+  const machines = useMachinesStore(state=>state.machines);
   
   const totalMachines = machines.length;
   const runningCount = machines.filter((m) => m.status === "running").length;
@@ -19,12 +22,16 @@ export default function App() {
     machines.reduce((acc, m) => acc + m.efficiency, 0) / (totalMachines || 1)
   );
 
+  useEffect(()=>{fetchMachines()},[fetchMachines])
+
+
+
   return (
     <div className="min-h-screen relative bg-slate-950 text-slate-100 p-4 sm:p-8 font-sans">
       <div className="max-w-7xl mx-auto">
        
         <Header machines={machines} />
-        
+
 
       
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
