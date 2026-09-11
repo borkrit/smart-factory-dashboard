@@ -1,75 +1,26 @@
-# React + TypeScript + Vite
+# IIoT Industrial Dashboard (Factory Management Kiosk)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance information dashboard optimized for tablet devices deployed in factory environments. Designed to run in **Kiosk Mode**, this application provides real-time operational management for factory machines, work shifts, production zones, and shop-floor personnel.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠 Tech Stack
 
-## React Compiler
+* **Frontend:** React 19, TypeScript, Vite
+* **State Management & Architecture:** Zustand, Modular Registry Pattern
+* **Styling:** Tailwind CSS
+* **Backend / Database:** Supabase (PostgreSQL, Row Level Security, Realtime Engine)
+* **Realtime Protocol:** WebSockets (Postgres Changes Subscription)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🏗 Data Architecture & Database Model
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### PostgreSQL / Supabase Schema
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+1. **`shops`** — Top-level organizational units/departments.
+2. **`zones`** — Logical and physical factory sub-areas (mapped to shops).
+3. **`shifts`** — Work shift definitions (`start_time`, `end_time`, `code`, `name`).
+4. **`machines`** — Equipment nodes linked to `zones` and `shops`.
+5. **`workers`** — Personnel and operators assigned to a default shift (`default_shift_id`).
+6. **`machine_operators`** — Many-to-Many junction table mapping machines, operators, and work shifts.
