@@ -1,16 +1,20 @@
 import { useState } from "react"
 import { useMachinesStore } from "../store/useMachinesStore"
 import { useTranslation } from "react-i18next"
-import type { JSX } from "react"
+import type { JSX,SubmitEvent } from "react"
+
+
+const initState = {
+        name:'',
+        type:''
+    }
+
 
 const AddMachine = ():JSX.Element=>{
 
     const {t} = useTranslation()
 
-    const [ form ,setForm ] = useState({
-        name:'',
-        type:''
-    })
+    const [ form ,setForm ] = useState(initState)
     const addMachine = useMachinesStore(state=>state.addMachine)
 
     const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => { 
@@ -18,9 +22,14 @@ const AddMachine = ():JSX.Element=>{
 
        }
 
+    const handleSubmit = (e:SubmitEvent<HTMLFormElement>)=>{
+        e.preventDefault(); 
+        addMachine(form);
+        setForm(initState)}
+
     return (<>
         <div>
-            <form className="" onSubmit={(e)=>{e.preventDefault(); addMachine(form);setForm({name:'',type:''})}}>
+            <form className="" onSubmit={handleSubmit}>
                 <label htmlFor="name" className="border-amber-300">
                     <input name='name' value={form.name} type="text"
                     className="bg-slate-950 border border-slate-800 rounded px-3 py-2 text-slate-100"
@@ -34,7 +43,6 @@ const AddMachine = ():JSX.Element=>{
                 </label>
 
                 <button type="submit" className="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded text-sm">
-                   
                     {t('new_machine.add_new_machine')}
                 </button>
             </form>
