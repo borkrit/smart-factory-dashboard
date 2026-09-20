@@ -22,24 +22,24 @@ const Home = ({totalMachines,alarmCount,runningCount,avgEfficiency,machines}:any
       
         <div className=" grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-            <span className="text-xs text-slate-400 font-mono uppercase">Всего станков</span>
+            <span className="text-xs text-slate-400 font-mono uppercase">{t('common.all_machines')} </span>
             <p className="text-2xl font-bold font-mono mt-1 text-slate-100">{totalMachines}</p>
           </div>
 
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-            <span className="text-xs text-slate-400 font-mono uppercase">В работе</span>
+            <span className="text-xs text-slate-400 font-mono uppercase">{t('common.in_progress')} </span>
             <p className="text-2xl font-bold font-mono mt-1 text-emerald-400">{runningCount}</p>
           </div>
 
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-            <span className="text-xs text-slate-400 font-mono uppercase">В аварии</span>
+            <span className="text-xs text-slate-400 font-mono uppercase">{t('common.in_accident')}</span>
             <p className={`text-2xl font-bold font-mono mt-1 ${alarmCount > 0 ? "text-rose-400" : "text-slate-400"}`}>
               {alarmCount}
             </p>
           </div>
 
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-            <span className="text-xs text-slate-400 font-mono uppercase">Средний OEE</span>
+            <span className="text-xs text-slate-400 font-mono uppercase">{t('common.avarage_efficiency')}</span>
             <p className="text-2xl font-bold font-mono mt-1 text-indigo-400">{avgEfficiency}%</p>
           </div>
         </div>

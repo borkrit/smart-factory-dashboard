@@ -5,7 +5,8 @@
     "in_accident": "У стані аварії",
     "avarage_efficiency": "Середнє OEE",
     "map_industrial": "Карта цеху",
-    "count_module": "Отримано {{count}} модулів"
+    "count_module": "Отримано {{count}} модулів",
+    "monitoring":"Моніторинг"
   },
   "new_machine": {
     "add_new_machine": "Додати новий верстат"

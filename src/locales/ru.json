@@ -6,7 +6,8 @@
         "in_accident":"В аварии",
         "avarage_efficiency":"Средний OEE",
         "map_industrial":"Карта цеха",
-        "count_module":"{{count}} модулей получено"
+        "count_module":"{{count}} модулей получено",
+        "monitoring":"Мониторинг"
 
     },
 

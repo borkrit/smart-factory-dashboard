@@ -84,7 +84,7 @@ const currentLanguage = i18n.language
           <span>🏭</span> SmartFactory IIoT
         </h1>
         <p className="text-xs text-slate-400 font-mono mt-1">
-          Мониторинг {time} Shift { (workTime.getHours() > 7 && workTime.getHours() < 16 ) ? 'A' :  (workTime.getHours() > 16 && workTime.getHours() < 22 ) ? 'B' : 'Factory closed'   }
+          {t('common.monitoring')} {time} Shift { (workTime.getHours() > 7 && workTime.getHours() < 16 ) ? 'A' :  (workTime.getHours() > 16 && workTime.getHours() < 22 ) ? 'B' : 'Factory closed'   }
         </p>
       </div>
 
