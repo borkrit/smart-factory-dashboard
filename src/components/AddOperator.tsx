@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Form from "./Form";
 // TODO create html for add operator 
 const AddOperator = ()=>{
 
@@ -9,10 +10,7 @@ const AddOperator = ()=>{
 
 
     return (
-        <form>
-
-        
-        </form>
+        <Form />
     )
 
 }

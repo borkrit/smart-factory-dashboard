@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AddMachine from "../components/AddMachine";
-import type { FC, JSX } from "react";
 import AddShifts from "../components/AddShifts";
+import AddOperator from "../components/AddOperator";
 
 interface SettingItem {
     settingName:string,
@@ -25,7 +25,7 @@ const settingsMenu: Record<SettingTabKey,SettingItem> = {
     },
     'add_worker':{
         settingName:'Add worker',
-        settingComponent: null
+        settingComponent: AddOperator
     },
     'add_instruction':{
         settingName:'Add instruction for machine',
