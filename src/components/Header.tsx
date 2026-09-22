@@ -2,14 +2,38 @@ import { useTranslation } from "react-i18next"
 import type { Machine } from "../mock/machine"
 import { useEffect, useRef, useState, type JSX } from "react"
 
-import { IoSettingsOutline } from "react-icons/io5";
-import AsideBar from "./AsideBar";
+import { IoCloseCircleOutline, IoSettingsOutline } from "react-icons/io5";
+
+import i18n from "../i18n";
 
 
-const Header = ({machines}:{machines:Machine[]}):JSX.Element=>{
+const workShift = [
+  {
+    id: '1',
+    shift:'A',
+    from:7,
+    to:16
+  },
+   {
+    id: '2',
+    shift:'B',
+    from:16,
+    to:22
+  }
+]
+
+
+const Header = ({machines,toggleSetting}:{machines:Machine[],toggleSetting:any}):JSX.Element=>{
   const {t} = useTranslation()
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null)
+const currentLanguage = i18n.language
+    
+    const listLanguages = Object.keys(i18n.services.resourceStore.data || {})
+
+    const handleToggleLang  = (event:React.ChangeEvent<HTMLSelectElement>)=>{
+        i18n.changeLanguage(event.target.value);
+    }
 
 
     const hasAlarm = machines.some((item)=>{
@@ -45,29 +69,12 @@ const Header = ({machines}:{machines:Machine[]}):JSX.Element=>{
     const status = getSystemStatus()
 
     const handleToggleMenu = ()=>{
-        setToggleMenu(true)
+        setToggleMenu(prev=> !prev)
+        toggleSetting()
     }
 
-    useEffect(()=>{
-
-      const eventClick = (e:MouseEvent)=>{
-        if(ref.current && !ref.current.contains(e.target as Node)){
-            setToggleMenu(false)
-        }
-        
-      }
-      if(toggleMenu){
-      document.addEventListener('click',eventClick)
-
-      }
-
-
-      return ()=>{
-        document.removeEventListener('click',eventClick)
-        
-      }
-
-    },[toggleMenu])
+    const workTime = new Date()
+    const time = workTime.getHours() + ':' + (workTime.getMinutes() < 10 ? `0${workTime.getMinutes()}`: workTime.getMinutes() ) 
 
 
     return(
@@ -77,7 +84,7 @@ const Header = ({machines}:{machines:Machine[]}):JSX.Element=>{
           <span>🏭</span> SmartFactory IIoT
         </h1>
         <p className="text-xs text-slate-400 font-mono mt-1">
-          Мониторинг Цеха #1 • Смена А
+          {t('common.monitoring')} {time} Shift { (workTime.getHours() > 7 && workTime.getHours() < 16 ) ? 'A' :  (workTime.getHours() > 16 && workTime.getHours() < 22 ) ? 'B' : 'Factory closed'   }
         </p>
       </div>
 
@@ -95,9 +102,22 @@ const Header = ({machines}:{machines:Machine[]}):JSX.Element=>{
         </div>
        
         
-        <div ref={ref}>
-          <IoSettingsOutline size={24} onClick={handleToggleMenu} />
-          <AsideBar open={toggleMenu}  />
+        <div ref={ref} className="flex gap-2.5" >
+          {!toggleMenu && <IoSettingsOutline size={24} onClick={handleToggleMenu} /> }
+          {toggleMenu && <IoCloseCircleOutline size={24} onClick={handleToggleMenu} /> }
+         
+            <select onChange={handleToggleLang} value={currentLanguage}>
+                {
+                listLanguages && listLanguages.map((language) =>{
+                    return (
+                        <option  key={language} value={language}>
+                            {language}
+                        </option>
+                    )
+                })
+            }
+            </select>
+
         </div>
         
 

@@ -5,7 +5,8 @@
     "in_accident": "In alarm state",
     "avarage_efficiency": "Average OEE",
     "map_industrial": "Shop floor map",
-    "count_module": "{{count}} modules received"
+    "count_module": "{{count}} modules received",
+    "monitoring":"Monitoring"
   },
   "new_machine": {
     "add_new_machine": "Add new machine"

@@ -5,7 +5,8 @@
     "in_accident": "W stanie awarii",
     "avarage_efficiency": "Średnie OEE",
     "map_industrial": "Mapa hali produkcyjnej",
-    "count_module": "Otrzymano {{count}} modułów"
+    "count_module": "Otrzymano {{count}} modułów",
+    "monitoring":"Monitoring"
   },
   "new_machine": {
     "add_new_machine": "Dodaj nową maszynę"
