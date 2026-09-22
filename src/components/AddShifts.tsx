@@ -18,6 +18,7 @@ const AddShifts = () => {
   const [fetching, setFetching] = useState<boolean>(true);
 
 
+
   const fetchShifts = async () => {
     try {
       setFetching(true);
@@ -32,7 +33,7 @@ const AddShifts = () => {
       }
 
       if (data) {
-        setShiftsList(data);
+        setShiftsList(data.map(shift=>({...shift,startTime:shift.start_time,endTime:shift.end_time})));
       }
     } catch (err) {
       console.error("Unexpected error fetching shifts:", err);
